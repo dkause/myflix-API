@@ -1,7 +1,9 @@
 # movie_api
+
 API for movie database
 Overall, this code sets up a basic API for managing movies and users, allowing you to perform CRUD operations (Create, Read, Update, Delete) on the movie and user data.
-## Routes:
+
+## Routes
 
 - GET /movies: Retrieves a list of all movies.
 - GET /users: Retrieves a list of all users.
