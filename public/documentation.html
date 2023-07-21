@@ -2,17 +2,18 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
   <title>TV - Drug of a Nation</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <link rel="stylesheet" href="pico.min.css" >
+  <link rel="stylesheet" href="styles.css" >
 </head>
 
 <body>
   <main class="container">
     <h1>My Flix - get your daily dose of distraction</h1>
-    <p>This is an exercise for programming an api.</p>
+    <p>This is an exercise for programming an API, which gives you general and detailed information about movies, directors and actors and genres. You can also add users, use a favorites list and update users information.</p>
     <h2>List of Url Endpoints</h2>
     <ul>
       <li>Return a list of ALL movies to the user;</li>
@@ -31,15 +32,15 @@
       <li>Allow users to update their user info (username)</li>
       <li>
         Allow users to add a movie to their list of favorites (showing only a
-        text that a movie has been added—more on this later)
+        text that a movie has been added — more on this later)
       </li>
       <li>
         Allow users to remove a movie from their list of favorites (showing
-        only a text that a movie has been removed—more on this later)
+        only a text that a movie has been removed — more on this later)
       </li>
       <li>
         Allow existing users to deregister (showing only a text that a user
-        email has been removed—more on this later)
+        email has been removed — more on this later)
       </li>
     </ul>
     <table role="grid">
@@ -54,86 +55,85 @@
         </tr>
       </thead>
       <tr>
-        <td data-cell:"Busines Logic">Get a list of all Movies</td>
-        <td data-cell:"URL">/movies</td>
-        <td data-cell:"HTTP Method">GET</td>
-        <td data-cell:"query parameters">n/a</td>
-        <td data-cell:"Request Body Data Format">n/a</td>
-        <td data-cell:"Response Body Data Format">JSON object</td>
+        <td data-cell="business logic" >Get a list of all Movies</td>
+        <td data-cell="URL">/movies</td>
+        <td data-cell="HTTP Method">GET</td>
+        <td data-cell="query parameters">n/a</td>
+        <td data-cell="Request Body Data Format">n/a</td>
+        <td data-cell="Response Body Data Format">JSON object</td>
       </tr>
       <tr>
-        <td data-cell:"Busines Logic">Get data of a specific movie</td>
-        <td data-cell:"URL">/movies/:title</td>
-        <td data-cell:"HTTP Method">GET</td>
-        <td data-cell:"query parameters">:title</td>
-        <td data-cell:"Request Body Data Format">n/a</td>
-        <td data-cell:"Response Body Data Format">JSON Object</td>
+        <td data-cell="Busines Logic">Get data of a specific movie</td>
+        <td data-cell="URL">/movies/=title</td>
+        <td data-cell="HTTP Method">GET</td>
+        <td data-cell="query parameters">=title</td>
+        <td data-cell="Request Body Data Format">n/a</td>
+        <td data-cell="Response Body Data Format">JSON Object</td>
       </tr>
       <tr>
-        <td data-cell:"Busines Logic">Get data of a specific movie genre</td>
-        <td data-cell:"URL">movies/genre/:genreName</td>
-        <td data-cell:"HTTP Method">GET</td>
-        <td data-cell:"query parameters">:genreName</td>
-        <td data-cell:"Request Body Data Format">n/a</td>
-        <td data-cell:"Request Body Data Format">JSON object</td>
+        <td data-cell="Busines Logic">Get data of a specific movie genre</td>
+        <td data-cell="URL">movies/genre/=genreName</td>
+        <td data-cell="HTTP Method">GET</td>
+        <td data-cell="query parameters">=genreName</td>
+        <td data-cell="Request Body Data Format">n/a</td>
+        <td data-cell="Request Body Data Format">JSON object</td>
       </tr>
       <tr>
-        <td data-cell:"Busines Logic">Get Data of a specific director</td>
-        <td data-cell:"URL">movies/director/:directorName</td>
-        <td data-cell:"HTTP Method">GET</td>
-        <td data-cell:"query parameters">:directorName</td>
-        <td data-cell:"Request Body Data Format">n/a</td>
-        <td data-cell:"Request Body Data Format">JSON object</td>
+        <td data-cell="Busines Logic">Get Data of a specific director</td>
+        <td data-cell="URL">movies/director/=directorName</td>
+        <td data-cell="HTTP Method">GET</td>
+        <td data-cell="query parameters">=directorName</td>
+        <td data-cell="Request Body Data Format">n/a</td>
+        <td data-cell="Request Body Data Format">JSON object</td>
       </tr>
       <tr>
-        <td data-cell:"Busines Logic">Get a list of all Users</td>
-        <td data-cell:"URL">/users</td>
-        <td data-cell:"HTTP Method">GET</td>
-        <td data-cell:"query parameters">n/a</td>
-        <td data-cell:"Request Body Data Format">n/a</td>
-        <td data-cell:"Response Body Data Format">JSON object</td>
+        <td data-cell="Busines Logic">Get a list of all Users</td>
+        <td data-cell="URL">/users</td>
+        <td data-cell="HTTP Method">GET</td>
+        <td data-cell="query parameters">n/a</td>
+        <td data-cell="Request Body Data Format">n/a</td>
+        <td data-cell="Response Body Data Format">JSON object</td>
       </tr>
       <tr>
-        <td data-cell:"Busines Logic">Register/Create a user</td>
-        <td data-cell:"URL">users/</td>
-        <td data-cell:"HTTP Method">POST</td>
-        <td data-cell:"query parameters">n/a</td>
-        <td data-cell:"Request Body Data Format">JSON Object of user data containing a unique username and fullname,
-          email
-        <td data-cell:"Response Body Data Format">string: ConfirmationMessage
+        <td data-cell="Busines Logic">Register/Create a user</td>
+        <td data-cell="URL">users/</td>
+        <td data-cell="HTTP Method">POST</td>
+        <td data-cell="query parameters">n/a</td>
+        <td data-cell="Request Body Data Format">JSON Object</td>
+        <td data-cell="Response Body Data Format">string= ConfirmationMessage
         </td>
       </tr>
       <tr>
-        <td data-cell:"Busines Logic">Update user info</td>
-        <td data-cell:"URL">/users/:username/update</td>
-        <td data-cell:"HTTP Method">PUT</td>
-        <td data-cell:"query parameters">:username</td>
-        <td data-cell:"Request Body Data Format">JSON Object</td>
-        <td data-cell:"Response Body Data Format">string: ConfirmationMessage</td>
+        <td data-cell="Busines Logic">Update user info</td>
+        <td data-cell="URL">/users/=username/update</td>
+        <td data-cell="HTTP Method">PUT</td>
+        <td data-cell="query parameters">=username</td>
+        <td data-cell="Request Body Data Format">JSON Object</td>
+        <td data-cell="Response Body Data Format">string= ConfirmationMessage</td>
       </tr>
       <tr>
-        <td data-cell:"Busines Logic">Delete User</td>
-        <td data-cell:"URL">/users/:userId</td>
-        <td data-cell:"HTTP Method">DELETE</td>
-        <td data-cell:"query parameters">n/a</td>
-        <td data-cell:"Request Body Data Format">n/a</td>
-        <td data-cell:"Response Body Data Format">string: ConfirmationMessage</td>
+        <td data-cell="Busines Logic">Delete User</td>
+        <td data-cell="URL">/users/=userId</td>
+        <td data-cell="HTTP Method">DELETE</td>
+        <td data-cell="query parameters">n/a</td>
+        <td data-cell="Request Body Data Format">n/a</td>
+        <td data-cell="Response Body Data Format">string= ConfirmationMessage</td>
       </tr>
       <tr>
-        <td data-cell:"Busines Logic">Add movie to user favorite list</td>
-        <td data-cell:"URL">/users/:userId/favorites/:movieTitle</td>
-        <td data-cell:"HTTP Method">PATCH</td>
-        <td data-cell:"query parameters">:movieTitle, :userId</td>
-        <td data-cell:"Request Body Data Format">n/a</td>
-        <td data-cell:"Response Body Data Format">string: ConfirmationMessage</td>
+        <td data-cell="Busines Logic">Add movie to user favorite list</td>
+        <td data-cell="URL">/users/=userId/favorites/=movieTitle</td>
+        <td data-cell="HTTP Method">PATCH</td>
+        <td data-cell="query parameters">=movieTitle, =userId</td>
+        <td data-cell="Request Body Data Format">n/a</td>
+        <td data-cell="Response Body Data Format">string= ConfirmationMessage</td>
       </tr>
       <tr>
-        <td data-cell:"Busines Logic">Delete movie from user favorite list</td>
-        <td data-cell:"URL">/users/:userId/favorites/:movieTitle</td>
-        <td data-cell:"HTTP Method">DELETE</td>
-        <td data-cell:"query parameters">:userId, :movieTitle</td>
-        <td data-cell:"Request Body Data Format">n/a</td>
-        <td data-cell:"Response Body Data Format">string: ConfirmationMessage</td>
+        <td data-cell="Busines Logic">Delete movie from user favorite list</td>
+        <td data-cell="URL">/users/=userId/favorites/=movieTitle</td>
+        <td data-cell="HTTP Method">DELETE</td>
+        <td data-cell="query parameters">=userId, =movieTitle</td>
+        <td data-cell="Request Body Data Format">n/a</td>
+        <td data-cell="Response Body Data Format">string= ConfirmationMessage</td>
       </tr>
     </table>
   </main>
