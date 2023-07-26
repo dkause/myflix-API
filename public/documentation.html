@@ -1,142 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TV - Drug of a Nation</title>
+    <link rel="stylesheet" href="pico.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-  <title>TV - Drug of a Nation</title>
-  <link rel="stylesheet" href="pico.min.css" >
-  <link rel="stylesheet" href="styles.css" >
-</head>
-
-<body>
-  <main class="container">
-    <h1>My Flix - get your daily dose of distraction</h1>
-    <p>This is an exercise for programming an API, which gives you general and detailed information about movies, directors and actors and genres. You can also add users, use a favorites list and update users information.</p>
-    <h2>List of Url Endpoints</h2>
-    <ul>
-      <li>Return a list of ALL movies to the user;</li>
-      <li>
-        Return data (description, genre, director, image URL, whether it is
-        featured or not) about a single movie by title to the user
-      </li>
-      <li>
-        Return data about a genre (description) by name/title (e.g.,
-        “Thriller”)
-      </li>
-      <li>
-        Return data about a director (bio, birth year, death year) by name
-      </li>
-      <li>Allow new users to register</li>
-      <li>Allow users to update their user info (username)</li>
-      <li>
-        Allow users to add a movie to their list of favorites (showing only a
-        text that a movie has been added — more on this later)
-      </li>
-      <li>
-        Allow users to remove a movie from their list of favorites (showing
-        only a text that a movie has been removed — more on this later)
-      </li>
-      <li>
-        Allow existing users to deregister (showing only a text that a user
-        email has been removed — more on this later)
-      </li>
-    </ul>
-    <table role="grid">
-      <thead>
+  <body>
+    <main class="container">
+      <h1>My Flix - get your daily dose of distraction</h1>
+      <p>
+        This is an exercise for programming an API, which gives you general and
+        detailed information about movies, directors and actors and genres. You
+        can also add users, use a favorites list and update users information.
+      </p>
+      <h2>List of Url Endpoints</h2>
+      <ul>
+        <li>Return a list of ALL movies to the user;</li>
+        <li>
+          Return data (description, genre, director, image URL, whether it is
+          featured or not) about a single movie by title to the user
+        </li>
+        <li>
+          Return data about a genre (description) by name/title (e.g.,
+          “Thriller”)
+        </li>
+        <li>
+          Return data about a director (bio, birth year, death year) by name
+        </li>
+        <li>Allow new users to register</li>
+        <li>Allow users to update their user info (username)</li>
+        <li>
+          Allow users to add a movie to their list of favorites (showing only a
+          text that a movie has been added — more on this later)
+        </li>
+        <li>
+          Allow users to remove a movie from their list of favorites (showing
+          only a text that a movie has been removed — more on this later)
+        </li>
+        <li>
+          Allow existing users to deregister (showing only a text that a user
+          email has been removed — more on this later)
+        </li>
+      </ul>
+      <table role="grid">
+        <thead>
+          <tr>
+            <th>Business Logic</th>
+            <th>URL</th>
+            <th>HTTP Method</th>
+            <th>query parameters</th>
+            <th>Request body data format</th>
+            <th>Response body data format</th>
+          </tr>
+        </thead>
         <tr>
-          <th>Business Logic</th>
-          <th>URL</th>
-          <th>HTTP Method</th>
-          <th>query parameters</th>
-          <th>Request body data format</th>
-          <th>Response body data format</th>
+          <td data-cell="business logic">Get a list of all Movies</td>
+          <td data-cell="URL">/movies</td>
+          <td data-cell="HTTP Method">GET</td>
+          <td data-cell="query parameters">n/a</td>
+          <td data-cell="Request Body Data Format">n/a</td>
+          <td data-cell="Response Body Data Format">
+            JSON Object
+            <code>
+              { "Genre": { "Name": "Thriller", "Description": "Thriller film,
+              also known as suspense film or suspense thriller, is a broad film
+              genre that involves excitement and suspense in the audience" },
+              "Director": { "Name": "Jonathan Demme", "Bio": " Robert Jonathan
+              Demme was an American director, producer, and screenwriter.",
+              "Birth": "1944", "Death": "2017" }, "Actors": [], "_id":
+              "64a6c874478d0280daa6be45", "Title": "Silence of the Lambs",
+              "Description": "To catch a serial killer, a yound FBI cadet seeks
+              the help of an incarcerated and manipulative cannibal killer.",
+              "ImagePath": "silenceofthelambs.png", "Featured": true }, {
+              "Genre": { "Name": "Fantasy", "Description": "Fantasy films are
+              films that belong to the fantasy genre with fantastic themes,
+              usually magic, supernatural events, mythology, folklore, or exotic
+              fantasy worlds. The genre is considered a form of speculative
+              fiction alongside science fiction films and horror films, although
+              the genres do overlap.[1] Fantasy films often have an element of
+              magic, myth, wonder, escapism, and the extraordinary" },
+              "Director": { "Name": "George Lucas", "Bio": " George Lucas is an
+              American director, producer, and screenwriter.", "Birth": "1944",
+              "Death": false }, "Actors": [], "_id": "64a7007c478d0280daa6be4f",
+              "Title": "Star Wars: Episode IV - A New Hope", "Description":
+              "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a
+              Wookiee and two droids to save the galaxy from the Empire's
+              world-destroying battle station, while also attempting to rescue
+              Princess Leia from the mysterious Darth Vader.", "ImagePath":
+              "starwarsfour.png", "Featured": true }, ...</code
+            >
+          </td>
         </tr>
-      </thead>
-      <tr>
-        <td data-cell="business logic" >Get a list of all Movies</td>
-        <td data-cell="URL">/movies</td>
-        <td data-cell="HTTP Method">GET</td>
-        <td data-cell="query parameters">n/a</td>
-        <td data-cell="Request Body Data Format">n/a</td>
-        <td data-cell="Response Body Data Format">JSON object</td>
-      </tr>
-      <tr>
-        <td data-cell="Busines Logic">Get data of a specific movie</td>
-        <td data-cell="URL">/movies/=title</td>
-        <td data-cell="HTTP Method">GET</td>
-        <td data-cell="query parameters">=title</td>
-        <td data-cell="Request Body Data Format">n/a</td>
-        <td data-cell="Response Body Data Format">JSON Object</td>
-      </tr>
-      <tr>
-        <td data-cell="Busines Logic">Get data of a specific movie genre</td>
-        <td data-cell="URL">movies/genre/=genreName</td>
-        <td data-cell="HTTP Method">GET</td>
-        <td data-cell="query parameters">=genreName</td>
-        <td data-cell="Request Body Data Format">n/a</td>
-        <td data-cell="Request Body Data Format">JSON object</td>
-      </tr>
-      <tr>
-        <td data-cell="Busines Logic">Get Data of a specific director</td>
-        <td data-cell="URL">movies/director/=directorName</td>
-        <td data-cell="HTTP Method">GET</td>
-        <td data-cell="query parameters">=directorName</td>
-        <td data-cell="Request Body Data Format">n/a</td>
-        <td data-cell="Request Body Data Format">JSON object</td>
-      </tr>
-      <tr>
-        <td data-cell="Busines Logic">Get a list of all Users</td>
-        <td data-cell="URL">/users</td>
-        <td data-cell="HTTP Method">GET</td>
-        <td data-cell="query parameters">n/a</td>
-        <td data-cell="Request Body Data Format">n/a</td>
-        <td data-cell="Response Body Data Format">JSON object</td>
-      </tr>
-      <tr>
-        <td data-cell="Busines Logic">Register/Create a user</td>
-        <td data-cell="URL">users/</td>
-        <td data-cell="HTTP Method">POST</td>
-        <td data-cell="query parameters">n/a</td>
-        <td data-cell="Request Body Data Format">JSON Object</td>
-        <td data-cell="Response Body Data Format">string= ConfirmationMessage
-        </td>
-      </tr>
-      <tr>
-        <td data-cell="Busines Logic">Update user info</td>
-        <td data-cell="URL">/users/=username/update</td>
-        <td data-cell="HTTP Method">PUT</td>
-        <td data-cell="query parameters">=username</td>
-        <td data-cell="Request Body Data Format">JSON Object</td>
-        <td data-cell="Response Body Data Format">string= ConfirmationMessage</td>
-      </tr>
-      <tr>
-        <td data-cell="Busines Logic">Delete User</td>
-        <td data-cell="URL">/users/=userId</td>
-        <td data-cell="HTTP Method">DELETE</td>
-        <td data-cell="query parameters">n/a</td>
-        <td data-cell="Request Body Data Format">n/a</td>
-        <td data-cell="Response Body Data Format">string= ConfirmationMessage</td>
-      </tr>
-      <tr>
-        <td data-cell="Busines Logic">Add movie to user favorite list</td>
-        <td data-cell="URL">/users/=userId/favorites/=movieTitle</td>
-        <td data-cell="HTTP Method">PATCH</td>
-        <td data-cell="query parameters">=movieTitle, =userId</td>
-        <td data-cell="Request Body Data Format">n/a</td>
-        <td data-cell="Response Body Data Format">string= ConfirmationMessage</td>
-      </tr>
-      <tr>
-        <td data-cell="Busines Logic">Delete movie from user favorite list</td>
-        <td data-cell="URL">/users/=userId/favorites/=movieTitle</td>
-        <td data-cell="HTTP Method">DELETE</td>
-        <td data-cell="query parameters">=userId, =movieTitle</td>
-        <td data-cell="Request Body Data Format">n/a</td>
-        <td data-cell="Response Body Data Format">string= ConfirmationMessage</td>
-      </tr>
-    </table>
-  </main>
-</body>
-
+        <tr>
+          <td data-cell="Busines Logic">Get data of a specific movie</td>
+          <td data-cell="URL">/movies/=title</td>
+          <td data-cell="HTTP Method">GET</td>
+          <td data-cell="query parameters">=title</td>
+          <td data-cell="Request Body Data Format">n/a</td>
+          <td data-cell="Response Body Data Format">
+            JSON Object
+            <code
+              >{ "Genre": { "Name": "Science Fiction", "Description": "Realistic
+              speculation about possible future events, based solidly on
+              adequate knowledge of the real world, past and present, and on a
+              thorough understanding of the nature and significance of the
+              scientific method." }, "Director": { "Name": "Ridley Scott",
+              "Bio": "Still lives and makes movies, which are getting worse.
+              British and started his carreer in advertisement ", "Birth":
+              "1937" }, "Actors": [], "_id": "64a6db98478d0280daa6be48",
+              "Title": "Bladerunner", "Description": "Im
+              Science-Fiction-Klassiker Blade Runner macht Harrison Ford im Jahr
+              2019 Jagd auf Replikanten. Die menschenähnlichen Androiden suchen
+              auf der Erde nach ihrem Schöpfer" }</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td data-cell="Busines Logic">Get data of a specific movie genre</td>
+          <td data-cell="URL">movies/genre/=genreName</td>
+          <td data-cell="HTTP Method">GET</td>
+          <td data-cell="query parameters">=genreName</td>
+          <td data-cell="Request Body Data Format">n/a</td>
+          <td data-cell="Response Body Data Format">
+            JSON Object<code
+              >"Thriller film, also known as suspense film or suspense thriller,
+              is a broad film genre that involves excitement and suspense in the
+              audience"</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td data-cell="Busines Logic">Get Data of a specific director</td>
+          <td data-cell="URL">movies/director/=directorName</td>
+          <td data-cell="HTTP Method">GET</td>
+          <td data-cell="query parameters">=directorName</td>
+          <td data-cell="Request Body Data Format">n/a</td>
+          <td data-cell="Response Body Data Format">
+            JSON Object<code
+              >" Robert Jonathan Demme was an American director, producer, and
+              screenwriter."</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td data-cell="Busines Logic">Get a list of all Users</td>
+          <td data-cell="URL">/users</td>
+          <td data-cell="HTTP Method">GET</td>
+          <td data-cell="query parameters">n/a</td>
+          <td data-cell="Request Body Data Format">n/a</td>
+          <td data-cell="Response Body Data Format">
+            JSON Object
+            <code>
+              [ { "_id": "64a708d8478d0280daa6be55", "Name": "Joe Pasta",
+              "Email": "Joe@piz.za", "Birthday": "1971-05-25T00:00:00.000Z",
+              "FavoriteMovies": [ "64a6c874478d0280daa6be48" ], "Password":
+              "password" }, { "_id": "64a708d8478d0280daa6be56", "Name": "King
+              Kong", "Email": "king@kong.com", "Birthday":
+              "1871-05-25T00:00:00.000Z", "FavoriteMovies": [
+              "64a6c874478d0280daa6be48" ], "Password": "password" }, { "_id":
+              "64a708d8478d0280daa6be57", "Name": "Hans Wurst", "Email":
+              "hans.wurst@gmail.com", "Birthday": "1991-02-22T00:00:00.000Z",
+              "FavoriteMovies": [ "64a6c874478d0280daa6be45",
+              "64a6db98478d0280daa6be48" ], "Password": "password" }, { "_id":
+              "64a708d8478d0280daa6be58", "Name": "Victoria Vegan", "Email":
+              "no.oil@shell.nl", "Birthday": "1979-07-15T00:00:00.000Z",
+              "FavoriteMovies": [ "64a6c874478d0280daa6be48" ], "Password":
+              "password" }, { "_id": "64c0043852f7d829808b61db", "Name": "Jane
+              Bond", "Password": "UpdateLockpic2000", "Email": "jane@bond.org",
+              "Birthday": "1971-05-24T23:00:00.000Z", "FavoriteMovies": [],
+              "__v": 0 }, { "_id": "64c01716d921726bc1f5537f", "Name": "test",
+              "Password": "pw2000", "Email": "test@bond.org", "Birthday":
+              "1951-01-04T23:00:00.000Z", "FavoriteMovies": [
+              "64a6db98478d0280daa6be49" ], "__v": 0 } ]
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td data-cell="Busines Logic">Register/Create a user</td>
+          <td data-cell="URL">users/</td>
+          <td data-cell="HTTP Method">POST</td>
+          <td data-cell="query parameters">n/a</td>
+          <td data-cell="Request Body Data Format">
+            JSON Object
+            <code>
+              { "Username": "test2", "Password": "pw20200", "Email":
+              "test2@bond.org", "Birthday": "1.5.1952" }</code
+            >
+          </td>
+          <td data-cell="Response Body Data Format">
+            <code>
+              { "Name": "test2", "Password": "pw20200", "Email":
+              "test2@bond.org", "Birthday": "1952-01-04T23:00:00.000Z",
+              "FavoriteMovies": [], "_id": "64c11759b9aeeaac80cc13fb", "__v": 0
+              }
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td data-cell="Busines Logic">Update user info</td>
+          <td data-cell="URL">/users/=username/update</td>
+          <td data-cell="HTTP Method">PUT</td>
+          <td data-cell="query parameters">=username</td>
+          <td data-cell="Request Body Data Format">
+            JSON Object
+            <code>
+              { "Username": "Jane Bond", "Password": "UpdateLockpic2002",
+              "Email": "jane@bond.org", "Birthday": "05.25.1971" }
+              </code>
+          </td>
+          <td data-cell="Response Body Data Format">
+            JSON Object
+            <code>
+              { "_id": "64c0043852f7d829808b61db", "Name": "Jane Bond",
+              "Password": "UpdateLockpic2002", "Email": "jane@bond.org",
+              "Birthday": "1971-05-24T23:00:00.000Z", "FavoriteMovies": [],
+              "__v": 0 }
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td data-cell="Busines Logic">Delete User</td>
+          <td data-cell="URL">/users/=userId</td>
+          <td data-cell="HTTP Method">DELETE</td>
+          <td data-cell="query parameters">n/a</td>
+          <td data-cell="Request Body Data Format">n/a</td>
+          <td data-cell="Response Body Data Format">
+            string= ConfirmationMessage<code>James Bond was deleted.</code>
+          </td>
+        </tr>
+        <tr>
+          <td data-cell="Busines Logic">Add movie to user favorite list</td>
+          <td data-cell="URL">/users/=userId/favorites/=movieTitle</td>
+          <td data-cell="HTTP Method">PATCH</td>
+          <td data-cell="query parameters">=movieTitle, =userId</td>
+          <td data-cell="Request Body Data Format">n/a</td>
+          <td data-cell="Response Body Data Format">
+            JSON Object
+            <code>
+              { "_id": "64c01716d921726bc1f5537f", "Name": "test", "Password":
+              "pw2000", "Email": "test@bond.org", "Birthday":
+              "1951-01-04T23:00:00.000Z", "FavoriteMovies": [
+              "64a6db98478d0280daa6be49", "64a6db98478d0280daa6be49" ], "__v": 0
+              }</code
+            >
+          </td>
+        </tr>
+        <tr>
+          <td data-cell="Busines Logic">
+            Delete movie from user favorite list
+          </td>
+          <td data-cell="URL">/users/=userId/favorites/=movieTitle</td>
+          <td data-cell="HTTP Method">DELETE</td>
+          <td data-cell="query parameters">=userId, =movieTitle</td>
+          <td data-cell="Request Body Data Format">n/a</td>
+          <td data-cell="Response Body Data Format">
+            JSON Object
+            <code>
+              {
+              "_id": "64c0043852f7d829808b61db",
+              "Name": "Jane Bond",
+              "Password": "UpdateLockpic2002",
+              "Email": "jane@bond.org",
+              "Birthday": "1971-05-24T23:00:00.000Z",
+              "FavoriteMovies": [],
+              "__v": 0
+          }
+        </code>
+          </td>
+        </tr>
+      </table>
+    </main>
+  </body>
 </html>
