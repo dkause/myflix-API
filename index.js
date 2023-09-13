@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Models = require("./models.js");
 const express = require("express");
+const { check, validationResult } = require('express-validator');
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -19,6 +20,22 @@ mongoose.connect(
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+const cors = require('cors');
+
+// Allow only certain domains
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) { // If a specific origin is not found on the list of allowed origins
+      let message = 'The CORS policy for this does not allow access from origin ' + origin;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 let auth = require('./auth.js')(app);
 const passport = require('passport');
@@ -89,7 +106,15 @@ app.get("/users", passport.authenticate('jwt', { session: false }), (req, res) =
 });
 
 // Register/Create a user
-app.post("/users", (req, res) => {
+app.post("/users", [check('Username','Username is required').isLength({min: 5}), check ('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(), check ('Password', 'Password is required').not().isEmpty(), check('Email', 'Email does not appear to be valid').isEmail()], (req, res) => {
+  // check the validation object for errors
+
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({errors:errors.array()});
+  }
+  let hashedPassword = Users.hashPassword(req.body.Password);
+
   Users.findOne({ Name: req.body.Username })
     .then((user) => {
       if (user) {
@@ -97,7 +122,7 @@ app.post("/users", (req, res) => {
       } else {
         Users.create({
           Name: req.body.Username,
-          Password: req.body.Password,
+          Password: hashedPassword,
           Email: req.body.Email,
           Birthday: req.body.Birthday,
         })
@@ -117,7 +142,7 @@ app.post("/users", (req, res) => {
 });
 
 // Get a user by username
-app.get("/users/:Username", passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get("/users/:Username",passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOne({ Name: req.params.Username })
     .then((user) => {
       res.json(user);
@@ -129,7 +154,12 @@ app.get("/users/:Username", passport.authenticate('jwt', { session: false }), (r
 });
 
 // Update User by Name
-app.put("/users/:Username", passport.authenticate('jwt', { session: false }), (req, res) => {
+app.put("/users/:Username", [check('Username','Username is required' ).isLength({min: 5}), check('Username','Username contains non-alphanumeric characters.').isAlphanumeric()], passport.authenticate('jwt', { session: false }), (req, res) => {
+
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({errors:errors.array()});
+  }
   Users.findOneAndUpdate(
     { Name: req.params.Username },
     {
