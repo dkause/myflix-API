@@ -154,7 +154,7 @@ app.get("/users/:Username",passport.authenticate('jwt', { session: false }), (re
 });
 
 // Update User by Name
-app.put("/users/:Username", [check('Username','Username is required' ).isLength({min: 5}), check('Username','Username contains non-alphanumeric characters.').isAlphanumeric()], passport.authenticate('jwt', { session: false }), (req, res) => {
+app.put("/users/:Username", [check('Username','Username is required' ).isLength({min: 5}), check('Username','Username contains non-alphanumeric characters.').isAlphanumeric()],/* passport.authenticate('jwt', { session: false })  ,*/ (req, res) => {
 
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -242,9 +242,10 @@ app.get("/movies/:Title", passport.authenticate('jwt', { session: false }), (req
     });
 });
 
-// General Error and Feedback messages
-app.listen(8080, () => {
-  console.log("Your app is listening on port 8080");
+const port = process.env.PORT || 8080;
+
+app.listen(port, '0.0.0.0' ,() => {
+  console.log("Your app is listening on port " + port);
 });
 
 // Error Handler
