@@ -7,13 +7,23 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 mongoose.connect(
-  "mongodb://localhost:27017/myflix",
-  console.log("Mongoose Connected"),
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+  mongodb+srv://dkause:5i4dCBvbSaWfUXQo
+  >@kausedb.qpgk51c.mongodb.net/kauseDB?retryWrites=true&w=majority,
+     console.log("MongoDB Connected"),
+     {
+       useNewUrlParser: true,
+       useUnifiedTopology: true,
+     }
+   );
+
+// mongoose.connect(
+//   "mongodb://localhost:27017/myflix",
+//   console.log("Mongoose Connected"),
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   }
+// );
 
 (bodyParser = require("body-parser")), (uuid = require("uuid"));
 
@@ -154,7 +164,7 @@ app.get("/users/:Username",passport.authenticate('jwt', { session: false }), (re
 });
 
 // Update User by Name
-app.put("/users/:Username", [check('Username','Username is required' ).isLength({min: 5}), check('Username','Username contains non-alphanumeric characters.').isAlphanumeric()],/* passport.authenticate('jwt', { session: false })  ,*/ (req, res) => {
+app.put("/users/:Username", [check('Username','Username is required' ).isLength({min: 5}), check('Username','Username contains non-alphanumeric characters.').isAlphanumeric()], passport.authenticate('jwt', { session: false })  , (req, res) => {
 
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
