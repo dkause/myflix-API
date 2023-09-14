@@ -6,13 +6,14 @@ const { check, validationResult } = require('express-validator');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect('mongodb+srv://dkause:ksOTsgxwTtF2X7sF@kausedb.qpgk51c.mongodb.net / kauseDB ? retryWrites = true & w=majority',
-  console.log("MongoDB Connected"),
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect('mongodb+srv://dkause:ksOTsgxwTtF2X7sF@kausedb.qpgk51c.mongodb.net/kauseDB?retryWrites=true&w=majority',
+{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}
+).then(() =>{console.log("kauseDB Connected");
+})
+.catch((error)=>{console.error("kauseDB connection Error: " + error)})
 
 // mongoose.connect(
 //   "mongodb://localhost:27017/myflix",
