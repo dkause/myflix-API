@@ -13,7 +13,7 @@ mongoose.connect('mongodb+srv://dkause:ksOTsgxwTtF2X7sF@kausedb.qpgk51c.mongodb.
 }
 ).then(() =>{console.log("kauseDB Connected");
 })
-.catch((error)=>{console.error("kauseDB connection Error: " + error)})
+.catch((error)=>{console.error("kauseDB connection Error: " + error)});
 
 // mongoose.connect(
 //   "mongodb://localhost:27017/myflix",
