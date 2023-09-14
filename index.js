@@ -6,15 +6,14 @@ const { check, validationResult } = require('express-validator');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect(
-  mongodb+srv://dkause:5i4dCBvbSaWfUXQo
-  >@kausedb.qpgk51c.mongodb.net/kauseDB?retryWrites=true&w=majority,
-     console.log("MongoDB Connected"),
-     {
-       useNewUrlParser: true,
-       useUnifiedTopology: true,
-     }
-   );
+mongoose.connect('
+  mongodb+srv://dkause:5i4dCBvbSaWfUXQo@kausedb.qpgk51c.mongodb.net / kauseDB ? retryWrites = true & w=majority',
+  console.log("MongoDB Connected"),
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 // mongoose.connect(
 //   "mongodb://localhost:27017/myflix",
@@ -116,12 +115,12 @@ app.get("/users", passport.authenticate('jwt', { session: false }), (req, res) =
 });
 
 // Register/Create a user
-app.post("/users", [check('Username','Username is required').isLength({min: 5}), check ('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(), check ('Password', 'Password is required').not().isEmpty(), check('Email', 'Email does not appear to be valid').isEmail()], (req, res) => {
+app.post("/users", [check('Username', 'Username is required').isLength({ min: 5 }), check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(), check('Password', 'Password is required').not().isEmpty(), check('Email', 'Email does not appear to be valid').isEmail()], (req, res) => {
   // check the validation object for errors
 
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).json({errors:errors.array()});
+    return res.status(422).json({ errors: errors.array() });
   }
   let hashedPassword = Users.hashPassword(req.body.Password);
 
@@ -152,7 +151,7 @@ app.post("/users", [check('Username','Username is required').isLength({min: 5}),
 });
 
 // Get a user by username
-app.get("/users/:Username",passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get("/users/:Username", passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOne({ Name: req.params.Username })
     .then((user) => {
       res.json(user);
@@ -164,11 +163,11 @@ app.get("/users/:Username",passport.authenticate('jwt', { session: false }), (re
 });
 
 // Update User by Name
-app.put("/users/:Username", [check('Username','Username is required' ).isLength({min: 5}), check('Username','Username contains non-alphanumeric characters.').isAlphanumeric()], passport.authenticate('jwt', { session: false })  , (req, res) => {
+app.put("/users/:Username", [check('Username', 'Username is required').isLength({ min: 5 }), check('Username', 'Username contains non-alphanumeric characters.').isAlphanumeric()], passport.authenticate('jwt', { session: false }), (req, res) => {
 
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).json({errors:errors.array()});
+    return res.status(422).json({ errors: errors.array() });
   }
   Users.findOneAndUpdate(
     { Name: req.params.Username },
@@ -254,7 +253,7 @@ app.get("/movies/:Title", passport.authenticate('jwt', { session: false }), (req
 
 const port = process.env.PORT || 8080;
 
-app.listen(port, '0.0.0.0' ,() => {
+app.listen(port, '0.0.0.0', () => {
   console.log("Your app is listening on port " + port);
 });
 
