@@ -7,7 +7,7 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 mongoose.connect('
-  mongodb+srv://dkause:5i4dCBvbSaWfUXQo@kausedb.qpgk51c.mongodb.net / kauseDB ? retryWrites = true & w=majority',
+  mongodb+srv://dkause:ksOTsgxwTtF2X7sF@kausedb.qpgk51c.mongodb.net / kauseDB ? retryWrites = true & w=majority',
   console.log("MongoDB Connected"),
   {
     useNewUrlParser: true,
