@@ -6,8 +6,7 @@ const { check, validationResult } = require('express-validator');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect('
-  mongodb+srv://dkause:ksOTsgxwTtF2X7sF@kausedb.qpgk51c.mongodb.net / kauseDB ? retryWrites = true & w=majority',
+mongoose.connect('mongodb+srv://dkause:ksOTsgxwTtF2X7sF@kausedb.qpgk51c.mongodb.net / kauseDB ? retryWrites = true & w=majority',
   console.log("MongoDB Connected"),
   {
     useNewUrlParser: true,
