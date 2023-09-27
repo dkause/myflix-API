@@ -52,6 +52,12 @@ require('./passport.js');
 
 /* URL ENDPOINTS*/
 
+
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/', (req, res) => {
+  res.send('hello world')
+})
+
 // Get a list of all Movies
 app.get("/movies", passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find()
