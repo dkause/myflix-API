@@ -124,13 +124,13 @@ app.post("/users", [check('Username', 'Username is required').isLength({ min: 5 
   }
   let hashedPassword = Users.hashPassword(req.body.Password);
 
-  Users.findOne({ Name: req.body.Username })
+  Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
         return res.status(400).send(req.body.Username + " already exists");
       } else {
         Users.create({
-          Name: req.body.Username,
+          Usrname: req.body.Username,
           Password: hashedPassword,
           Email: req.body.Email,
           Birthday: req.body.Birthday,
@@ -152,7 +152,7 @@ app.post("/users", [check('Username', 'Username is required').isLength({ min: 5 
 
 // Get a user by username
 app.get("/users/:Username", passport.authenticate('jwt', { session: false }), (req, res) => {
-  Users.findOne({ Name: req.params.Username })
+  Users.findOne({ Username: req.params.Username })
     .then((user) => {
       res.json(user);
     })
@@ -170,10 +170,10 @@ app.put("/users/:Username", [check('Username', 'Username is required').isLength(
     return res.status(422).json({ errors: errors.array() });
   }
   Users.findOneAndUpdate(
-    { Name: req.params.Username },
+    { Username: req.params.Username },
     {
       $set: {
-        Name: req.body.Username,
+        Username: req.body.Username,
         Password: req.body.Password,
         Email: req.body.Email,
         Birthday: req.body.Birthday,
@@ -192,7 +192,7 @@ app.put("/users/:Username", [check('Username', 'Username is required').isLength(
 
 // Delete User by Name
 app.delete("/users/:Username", passport.authenticate('jwt', { session: false }), (req, res) => {
-  Users.findOneAndRemove({ Name: req.params.Username })
+  Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
         res.status(400).send(req.params.Username + " was not found.");
@@ -209,7 +209,7 @@ app.delete("/users/:Username", passport.authenticate('jwt', { session: false }),
 // Add a movie to favorites list
 app.post("/users/:Username/movies/:MovieId", passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate(
-    { Name: req.params.Username },
+    { Username: req.params.Username },
     { $push: { FavoriteMovies: req.params.MovieId } },
     { new: true }
   )
@@ -225,7 +225,7 @@ app.post("/users/:Username/movies/:MovieId", passport.authenticate('jwt', { sess
 // Delete a movie from favorites list
 app.delete("/users/:Username/movies/:MovieId", passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate(
-    { Name: req.params.Username },
+    { Username: req.params.Username },
     { $pull: { FavoriteMovies: req.params.MovieId } },
     { new: true }
   )
