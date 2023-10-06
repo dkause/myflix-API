@@ -59,6 +59,8 @@ app.get('/', (req, res) => {
 })
 
 // Get a list of all Movies
+ 
+// JWT Removed ! 
 app.get("/movies", (req, res) => {
   Movies.find()
     .then((movies) => {
