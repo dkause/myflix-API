@@ -46,6 +46,7 @@ app.use(cors({
   }
 }));
 
+// import login from auth.js
 let auth = require('./auth.js')(app);
 const passport = require('passport');
 require('./passport.js');
@@ -96,7 +97,7 @@ app.get("/movies/genre/:Genre", passport.authenticate('jwt', { session: false })
     });
 });
 
-// // Get data of a specific Director
+// Get data of a specific Director
 app.get("/movies/director/:Name", passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.findOne({ "Director.Name": req.params.Name })
     .then((directorName) => {
