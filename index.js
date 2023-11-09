@@ -169,7 +169,7 @@ app.get("/users/:Username", passport.authenticate('jwt', { session: false }), (r
       res.status(500).send("Error: " + err);
     });
 });
-
+// TODO: validation for password
 // Update User by Name
 app.put("/users/:Username", [check('Username', 'Username is required').isLength({ min: 5 }), check('Username', 'Username contains non-alphanumeric characters.').isAlphanumeric()], passport.authenticate('jwt', { session: false }), (req, res) => {
 
