@@ -43,7 +43,8 @@ let allowedOrigins = [
   'http://localhost:8080',
   'http://localhost:1234',
   'http://testsite.com',
-  'https://movie-api-5rhq.onrender.com'
+  'https://movie-api-5rhq.onrender.com',
+  'https://kause-myflix.netlify.app'
 ]
 
 app.use(
