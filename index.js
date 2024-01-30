@@ -46,7 +46,8 @@ let allowedOrigins = [
   'http://testsite.com',
   'https://movie-api-5rhq.onrender.com',
   'https://kause-myflix.netlify.app',
-  'https://dkause.github.io/myFlix-Angular-client'
+  'https://dkause.github.io/myFlix-Angular-client',
+  'https://dkause.github.io',
 ]
 
 app.use(
