@@ -46,7 +46,6 @@ let allowedOrigins = [
   'http://testsite.com',
   'https://movie-api-5rhq.onrender.com',
   'https://kause-myflix.netlify.app',
-  'https://dkause.github.io/myFlix-Angular-client',
   'https://dkause.github.io',
 ]
 
@@ -260,7 +259,7 @@ app.put(
 
 // Delete User by Name
 app.delete(
-  '/users/:Username',
+  '/users/:Username/:_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Users.findOneAndRemove({ Username: req.params.Username })
