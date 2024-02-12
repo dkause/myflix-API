@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Global</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Global</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="DELETE'/users/:Username/:_id'"><span class="type-signature"></span>DELETE '/users/:Username/:_id'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    This handles a DELETE request to delete specific user identfied by their name and ID.<br>
+A JWT token is required and an existing user.<br>
+If the username is found in the database, the user is deleted.<br>
+The response is either a status code 200 on sucessful delete or a status code 400 if the user does not exists.<br>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line407">line 407</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>Request data format
+{"_id": ObjectID,
+"Username":""}
+,
+token</code></pre>
+
+    <pre class="prettyprint"><code>Response data format
+'Status 200 'Username was deleted.'</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="DELETE'/users/:Username/movies/:MovieId'"><span class="type-signature"></span>DELETE '/users/:Username/movies/:MovieId'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Handles a DELETE request to add a movie to the user's favorite list.<br>
+Requires a JWT Token for authentification.<br>
+Deletes the specified movie to the favorites list of the user.<br>
+Responds with the updated user object containing the updated favorites list.<br>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line477">line 477</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>Request data format
+{
+"Username": "",
+"FavoriteMovies": ObjectID
+}</code></pre>
+
+    <pre class="prettyprint"><code>Response data format
+{
+"FavoriteMovies": [ObjectID]
+}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="GET'/'"><span class="type-signature"></span>GET '/'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Handles GET requests to the homepage.<br>
+This endpoint can be used to check if server is running or to intialize it.<br>
+Responds with a 'hello world' message
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line68">line 68</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="GET'/movies'"><span class="type-signature"></span>GET '/movies'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Handles GET requests to '/movies' route.<br>
+Requires authentication using JWT.<br>
+Retrieves a list of movies from the database and sends it as a JSON response.<br>
+Provides an error message if the request fails.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line78">line 78</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>Response data format
+[
+{"_id":ObjectID,
+"Title":"",
+"Description":"",
+"Genre": ObjectID,
+"Director":[ObjectID],
+"ImagePath":"",
+"Featured":boolean}
+]</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="GET'/movies/:Title'"><span class="type-signature"></span>GET '/movies/:Title'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Handles GET requests to '/movies/:Title' route.<br>
+Requires authentification using JWT.<br>
+Returns a movie with the specified title from the database as a JSON response.<br>
+Responds with an error message if the request fails.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line111">line 111</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>Response data format
+{"_id":ObjectID,
+"Title":"",
+"Description":"",
+"Genre":
+{"Name":"",
+"Description":""},
+"Director":{"Name":"",
+"Bio":"","Birth":"","Death":""},"ImagePath":"","Featured":boolean}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="GET'/movies/:Title'"><span class="type-signature"></span>GET '/movies/:Title'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    This GET Request provides a movie description identified by the movie title.<br>
+Requires a JWT token for authentification.<br>
+Returns the movie description in JSON format if found, otherwise returns an error message.<br>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line514">line 514</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>Request data format
+{
+"Title": ""
+}</code></pre>
+
+    <pre class="prettyprint"><code>Response data format
+{
+"_id":ObjectID,
+"Title":"",
+"Description":"",
+}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="GET'/movies/director/:Name'"><span class="type-signature"></span>GET '/movies/director/:Name'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Handles GET request about a specific director.<br>
+Requires JWT for authentification.<br>
+Returns JSON data about a specific director.<br>
+If the the request fails, returns an error message.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line178">line 178</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>Request data format
+{
+"Name" : ""
+}</code></pre>
+
+    <pre class="prettyprint"><code>Respnse data format
+{
+"_id": ObjectID,
+"Name": "",
+"Bio": "",
+"Birth": Date,
+"Death": Date
+}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="GET'/movies/genre/:Genre',"><span class="type-signature"></span>GET '/movies/genre/:Genre',<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Handles GET request to retrieve about a specific movie genre.<br>
+Requires JWT for authentication.<br>
+Returns JSON Data about a specific genre.<br>
+If the request fails returns an error message.<br>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line143">line 143</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>Request data format
+{
+"Name": ""
+}</code></pre>
+
+    <pre class="prettyprint"><code>Response data format
+{
+"id": ObjectID
+"Name": "",
+"Description": ""
+}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="GET'/users'"><span class="type-signature"></span>GET '/users'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Handles a GET Request to a list of all users.<br>
+Requires JWT for authentification.<br>
+Returns a JSON object containing a list of all users.<br>
+Returns an error message if the request fails.<br>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line215">line 215</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="GET'/users/:Username'"><span class="type-signature"></span>GET '/users/:Username'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    This GET request returns data in JSON format about a specific user, identified by its name.<br>
+JWT is required for authentification.<br>
+If the request fails an error message is returned.<br>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line311">line 311</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>Request data format
+{
+"Username":""
+}</code></pre>
+
+    <pre class="prettyprint"><code>Response data format
+ {"_id": ObjectID,
+"Username":"",
+"Password":"",
+"Email":"",
+"Birthday":"",
+"FavoriteMovies":[ObjectID],
+}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="POST'/login'"><span class="type-signature"></span>POST '/login'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    This route handles the login of the user.<br>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>Request data format
+{
+'Username':'',
+'Password':''
+}</code></pre>
+
+    <pre class="prettyprint"><code>Response data format
+{"_id": ObjectID,
+"Username":"",
+"Password":"",
+"Email":"",
+"Birthday":"",
+"FavoriteMovies":[ObjectID],
+},
+token:""</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="POST'/users'"><span class="type-signature"></span>POST '/users'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    This POST request handles the registration or creation of a user in the database.<br>
+It checks if the user exists and validates if all necessary fields are provided in the request.<br>
+If the request fails the response is an error message.<br>
+If the user already exits the response is an 400 status code with the message 'Username already exits'.<br>
+If the user creation is sucessfull a status code 201 and the JSON user object is returned.<br>
+The password is hashed.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line236">line 236</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>Request data format
+{"_id": ObjectID,
+"Username":"",
+"Password":"",
+"Email":"",
+"Birthday":"",</code></pre>
+
+    <pre class="prettyprint"><code>Response data format
+ {"_id": ObjectID,
+"Username":"",
+"Password":"",
+"Email":"",
+"Birthday":"",
+"FavoriteMovies":[ObjectID],
+}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="POST'/users/:Username/movies/:MovieId'"><span class="type-signature"></span>POST '/users/:Username/movies/:MovieId'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Handles a POST request to add a movie to the user's favorite list.<br>
+Requires a JWT Token for authentificaion.<br>
+Adds the specified movie to the favorites list of the user.<br>
+Responds with the updated user object containing the new favorites list.<br>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line441">line 441</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>Request data format
+{
+"Username": "",
+"FavoriteMovies": ObjectID
+}</code></pre>
+
+    <pre class="prettyprint"><code>Response data format
+{
+"FavoriteMovies": [ObjectID]
+}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="PUT'/users/:Username'"><span class="type-signature"></span>PUT '/users/:Username'<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    This handles a PUT request to update specific userdata.<br>
+The requirements for the username and if a JWT token exists are checked.<br>
+If the username is found in the database, the data is updated.<br>
+The response is either a status code 200 on sucessful update or an error message.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line345">line 345</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>Request data format
+{
+ "Username": "",
+ "Password": "",
+ "Email": "",
+ "Birthday:" ""
+}</code></pre>
+
+    <pre class="prettyprint"><code>Response data format
+* {"_id": ObjectID,
+"Username":"",
+"Password":"",
+"Email":"",
+"Birthday":"",
+"FavoriteMovies":[ObjectID],
+}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="port"><span class="type-signature">(constant) </span>port<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Starts the server to listen on a specified port and IP address.<br>
+If the PORT environment variable is set, the server listens on that port.<br>
+Otherwise, it defaults to port 8080.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line555">line 555</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DELETE'/users/:Username/:_id'">DELETE '/users/:Username/:_id'</a></li><li><a href="global.html#DELETE'/users/:Username/movies/:MovieId'">DELETE '/users/:Username/movies/:MovieId'</a></li><li><a href="global.html#GET'/'">GET '/'</a></li><li><a href="global.html#GET'/movies'">GET '/movies'</a></li><li><a href="global.html#GET'/movies/:Title'">GET '/movies/:Title'</a></li><li><a href="global.html#GET'/movies/director/:Name'">GET '/movies/director/:Name'</a></li><li><a href="global.html#GET'/movies/genre/:Genre',">GET '/movies/genre/:Genre',</a></li><li><a href="global.html#GET'/users'">GET '/users'</a></li><li><a href="global.html#GET'/users/:Username'">GET '/users/:Username'</a></li><li><a href="global.html#POST'/login'">POST '/login'</a></li><li><a href="global.html#POST'/users'">POST '/users'</a></li><li><a href="global.html#POST'/users/:Username/movies/:MovieId'">POST '/users/:Username/movies/:MovieId'</a></li><li><a href="global.html#PUT'/users/:Username'">PUT '/users/:Username'</a></li><li><a href="global.html#port">port</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Feb 12 2024 18:31:13 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

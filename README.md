@@ -23,8 +23,10 @@ This code sets up a basic API for managing movies.
 - GET /movies/director/:directorName: Retrieves data about a specific director based on their name.
 
 ## MongoDB Collections
-*users*
-```
+
+### users
+
+```text
 {"_id":{"$oid":"654f79b2097700dc74631ad0"},
 "Username":"Daniel",
 "Password":"$2b$10$Ei/SocQMEtlUQxP0IeVkmugXk7qqywnmXibuy6VPjB6kGZL.qbcnu",
@@ -33,8 +35,10 @@ This code sets up a basic API for managing movies.
 "FavoriteMovies":[{"$oid":"64a6db98478d0280daa6be48"}],
 "__v":{"$numberInt":"0"}}
 ```
-*movies*
-```
+
+### movies
+
+```text
 {"_id":{"$oid":"64a6c874478d0280daa6be45"},
 "Title":"Silence of the Lambs",
 "Description":"To catch a serial killer, a yound FBI cadet seeks the help of an incarcerated and manipulative cannibal killer.",

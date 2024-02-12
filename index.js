@@ -3,19 +3,7 @@
  * It uses Express.js for routing, Mongoose for database connection, and Passport.js for authentication.
  * The API provides endpoints for retrieving movies, genres, directors, and users, as well as adding and removing movies from a user's favorites list.
  * It also supports user registration and updating user information.
- * @module index.js
- * @requires mongoose
- * @requires ./models.js
- * @requires express
- * @requires express-validator
- * @requires body-parser
- * @requires uuid
- * @requires cors
- * @requires ./auth.js
- * @requires passport
- * @requires ./passport.js
  */
-
 const mongoose = require('mongoose')
 const Models = require('./models.js')
 const express = require('express')
@@ -78,28 +66,33 @@ const passport = require('passport')
 require('./passport.js')
 
 /**
- * Handles GET requests to the homepage.
- * This endpoint can be used to check if server is running or to intialize it.
+ * @name  GET '/'
+ * @description Handles GET requests to the homepage.<br>
+ * This endpoint can be used to check if server is running or to intialize it.<br>
  * Responds with a 'hello world' message
- * @param {Object} req - the request object
- * @param {Object} res - the response object
- * @returns {String} 'hello world'
  */
-
 app.get('/', (req, res) => {
   res.send('hello world')
 })
 
 /**
- * Handles GET requests to '/movies' route.
- * Requires authentication using JWT.
- * Retrieves a list of movies from the database and sends it as a JSON response.
- * Provides an error message if the request failes
- * @param {Object} req - The request object.
- * @param {Object} res - The response object.
- * @returns {Array<Object>} An array of movie objects in JSON format.
+ * @name GET '/movies'
+ * @description Handles GET requests to '/movies' route.<br>
+ * Requires authentication using JWT.<br>
+ * Retrieves a list of movies from the database and sends it as a JSON response.<br>
+ * Provides an error message if the request fails.
+ * @example
+ * Response data format
+ * [
+ * {"_id":ObjectID,
+ * "Title":"",
+ * "Description":"",
+ * "Genre": ObjectID,
+ * "Director":[ObjectID],
+ * "ImagePath":"",
+ * "Featured":boolean}
+ * ]
  */
-
 app.get(
   '/movies',
   passport.authenticate('jwt', { session: false }),
@@ -116,16 +109,22 @@ app.get(
 )
 
 /**
- * Handles GET requests to '/movies/:Title' route.
- * Requires authentification using JWT.
- * Returns a movie with the specified title from the database as a JSON response
- *  Responds with an error message if the request fails.
- * @param {Object} req - The request object containing the movie title parameter.
- * @param {string} req.params.Title - The title of the movie to retrieve.
- * @param {Object} res - The response object providing specific movie data as JSON.
- * @returns {Object} The movie object in JSON format.
+ * @name GET '/movies/:Title'
+ * @description Handles GET requests to '/movies/:Title' route.<br>
+ * Requires authentification using JWT.<br>
+ * Returns a movie with the specified title from the database as a JSON response.<br>
+ * Responds with an error message if the request fails.
+ * @example
+ * Response data format
+ * {"_id":ObjectID,
+ * "Title":"",
+ * "Description":"",
+ * "Genre":
+ * {"Name":"",
+ * "Description":""},
+ * "Director":{"Name":"",
+ * "Bio":"","Birth":"","Death":""},"ImagePath":"","Featured":boolean}
  */
-
 app.get(
   '/movies/:Title',
   passport.authenticate('jwt', { session: false }),
@@ -142,16 +141,24 @@ app.get(
 )
 
 /**
- * Handles GET request to retrieve about a specific movie genre.
- * Requires JWT for authentication.
- * Returns JSON Data about a specific genre.
- * If the request fails returns an error message
- * @param {Object} req - The request object containing the genre parameter.
- * @param {string} req.params.Genre - The name of the genre to retrieve data for.
- * @param {Object} res - The response object providing JSON data about the genre.
- * @returns {Object} JSON data about the specified genre.
+ * @name  GET '/movies/genre/:Genre',
+ * @description Handles GET request to retrieve about a specific movie genre.<br>
+ * Requires JWT for authentication.<br>
+ * Returns JSON Data about a specific genre.<br>
+ * If the request fails returns an error message.<br>
+ * @example
+ * Request data format
+ * {
+ * "Name": ""
+ * }
+ * @example
+ * Response data format
+ * {
+ * "id": ObjectID
+ * "Name": "",
+ * "Description": ""
+ * }
  */
-
 app.get(
   '/movies/genre/:Genre',
   passport.authenticate('jwt', { session: false }),
@@ -169,16 +176,26 @@ app.get(
 )
 
 /**
- * Handles GET request about a specific director.
- * Requires JWT for authentification
- * Returns JSON data about a specific director
- * If the th request fails, returns an error message
- * @param {Object} req - this GET request requires a parameter 'Name'
- * @param {string} req.params.Name - The name of the director to retrieve data for.
- * @param {Object} res - The response object providing JSON data about the director.
- * @returns {Object} JSON data about the specified director.
+ * @name  GET '/movies/director/:Name'
+ * @description Handles GET request about a specific director.<br>
+ * Requires JWT for authentification.<br>
+ * Returns JSON data about a specific director.<br>
+ * If the the request fails, returns an error message.
+ * @example
+ * Request data format
+ * {
+ * "Name" : ""
+ * }
+ * @example
+ * Respnse data format
+ * {
+ * "_id": ObjectID,
+ * "Name": "",
+ * "Bio": "",
+ * "Birth": Date,
+ * "Death": Date
+ * }
  */
-
 app.get(
   '/movies/director/:Name',
   passport.authenticate('jwt', { session: false }),
@@ -196,13 +213,11 @@ app.get(
 )
 
 /**
- * Handles a GET Request to a list of all users.
- * Requires JWT for authentification
- * Returns a JSON object containing a list of all users.
- * Returns an error message if the request fails
- * @param {Object} req - this GET request demands only the url endpoint '/users'.
- * @param {Object} res - the response returns a JSON object containing a list of all users.
- * @returns {Object} A JSON object containing a list of all users.
+ * @name  GET '/users'
+ * @description Handles a GET Request to a list of all users.<br>
+ * Requires JWT for authentification.<br>
+ * Returns a JSON object containing a list of all users.<br>
+ * Returns an error message if the request fails.<br>
  */
 app.get(
   '/users',
@@ -219,21 +234,30 @@ app.get(
   }
 )
 /**
- * This POST request handles the registration or creation of a user in the database.
- * It checks if the user exists and validates if all necessary fields are provided in the request.
- * If the request fails the response is an error message.
- * If the user already exits the response is an 400 status code with the message 'Username already exits'.
- * If the user creation is sucessfull a status code 201 and the JSON user object is returned.
+ * @name POST '/users'
+ * @description This POST request handles the registration or creation of a user in the database.<br>
+ * It checks if the user exists and validates if all necessary fields are provided in the request.<br>
+ * If the request fails the response is an error message.<br>
+ * If the user already exits the response is an 400 status code with the message 'Username already exits'.<br>
+ * If the user creation is sucessfull a status code 201 and the JSON user object is returned.<br>
  * The password is hashed.
- * @param {Object} req - The request object containing the user registration data
- * @param {string} req.body.Username - The username to be registered. Only alphanumeric characters allowed and min five characters.
- * @param {string} req.body.Password - The password of the user to be generated
- * @param {string} req.body.Email - The Email of the user beeing generated.
- * @param {string} req.body.Birthday - Optional, the birthdate of the user being generated.
- * @param {Object} res - The response object
- * @returns {Object} A response containing details about the registration status and errors.
+ * @example
+ * Request data format
+ * {"_id": ObjectID,
+ * "Username":"",
+ * "Password":"",
+ * "Email":"",
+ * "Birthday":"",
+ * @example
+ * Response data format
+ *  {"_id": ObjectID,
+ * "Username":"",
+ * "Password":"",
+ * "Email":"",
+ * "Birthday":"",
+ * "FavoriteMovies":[ObjectID],
+ * }
  */
-// Register/Create a user
 app.post(
   '/users',
   [
@@ -285,15 +309,25 @@ app.post(
   }
 )
 /**
- * This GET request returns data in JSON format about a specific user, identified by its name.
- * JWT is required for authentification
- * If the request fails an error message is returned.
- * @param {Object} req - The GET request contains the username
- * @param {string} req.params.Username - The name of the user to be queried.
- * @param {Object} res - The response contains data about the user in JSON
- * @returns {Object} JSOn response containing user data or an error message
+ * @name  GET '/users/:Username'
+ * @description This GET request returns data in JSON format about a specific user, identified by its name.<br>
+ * JWT is required for authentification.<br>
+ * If the request fails an error message is returned.<br>
+ * @example
+ * Request data format
+ * {
+ * "Username":""
+ * }
+ * @example
+ * Response data format
+ *  {"_id": ObjectID,
+ * "Username":"",
+ * "Password":"",
+ * "Email":"",
+ * "Birthday":"",
+ * "FavoriteMovies":[ObjectID],
+ * }
  */
-// Get a user by username
 app.get(
   '/users/:Username',
   passport.authenticate('jwt', { session: false }),
@@ -309,21 +343,29 @@ app.get(
   }
 )
 /**
- * This handles a PUT request to update specific userdata.
- * The requirements for the username and if a JWT token exists are checked.
- * If the username is found in the database, the data is updated
+ * @name PUT '/users/:Username'
+ * @description This handles a PUT request to update specific userdata.<br>
+ * The requirements for the username and if a JWT token exists are checked.<br>
+ * If the username is found in the database, the data is updated.<br>
  * The response is either a status code 200 on sucessful update or an error message.
- * @param {Object} req - The request object.
- * @param {string} req.params.Username - The username of the user to be updated.
- * @param {string} req.body.Username - The new username for the user.
- * @param {string} req.body.Password - The new password for the user.
- * @param {string} req.body.Email - The new email address for the user.
- * @param {string} [req.body.Birthday] - The new birthday for the user (optional).
- * @param {Object} res - The response object.
- * @returns {Object} A response object containing either the updated user data or an error message.
+ * @example
+ * Request data format
+ * {
+ *  "Username": "",
+ *  "Password": "",
+ *  "Email": "",
+ *  "Birthday:" ""
+ * }
+ * @example
+ * Response data format
+ ** {"_id": ObjectID,
+ * "Username":"",
+ * "Password":"",
+ * "Email":"",
+ * "Birthday":"",
+ * "FavoriteMovies":[ObjectID],
+ * }
  */
-
-// Update User by Name
 app.put(
   '/users/:Username',
   [
@@ -363,17 +405,21 @@ app.put(
   }
 )
 /**
- * This handles a DELETE request to delete specific user identfied by their name and ID.
- * The requirements are a JWT token and an existing user.
- * If the username is found in the database, the user is deleted.
- * The response is either a status code 200 on sucessful delete or a status code 400 if the user does not exists.
- * @param {Object} req - The request object.
- * @param {string} req.params.Username - The username of the user to be deleted.
- * @param {string} req.params._id - The Id if the user to be deleted.
- * @param {Object} res - The response object.
- * @returns {Object} A response object containing either a success message on deletion or an error message.
+ * @name DELETE '/users/:Username/:_id'
+ * @description This handles a DELETE request to delete specific user identfied by their name and ID.<br>
+ * A JWT token is required and an existing user.<br>
+ * If the username is found in the database, the user is deleted.<br>
+ * The response is either a status code 200 on sucessful delete or a status code 400 if the user does not exists.<br>
+ * @example
+ * Request data format
+ * {"_id": ObjectID,
+ * "Username":""}
+ * ,
+ * token
+ * @example
+ * Response data format
+ * 'Status 200 'Username was deleted.'
  */
-// Delete User by Name
 app.delete(
   '/users/:Username/:_id',
   passport.authenticate('jwt', { session: false }),
@@ -393,17 +439,23 @@ app.delete(
   }
 )
 /**
- * Handles a POST request to add a movie to the user's favorite list.
- * Requires a JWT Token for authentificaion.
- * Adds the specified movie to the favorites list of the user.
- * Responds with the updated user object containing the new favorites list
- * @param {Object} req - The request object.
- * @param {string} req.params.Username - The username of the user.
- * @param {string} req.params.MovieId - The ID of the movie to be added to favorites.
- * @param {Object} res - The response object.
- * @returns {Object} A response object containing the updated user object with the added movie to favorites or an error message.
+ * @name POST '/users/:Username/movies/:MovieId'
+ * @description Handles a POST request to add a movie to the user's favorite list.<br>
+ * Requires a JWT Token for authentificaion.<br>
+ * Adds the specified movie to the favorites list of the user.<br>
+ * Responds with the updated user object containing the new favorites list.<br>
+ * @example
+ * Request data format
+ * {
+ * "Username": "",
+ * "FavoriteMovies": ObjectID
+ * }
+ * @example
+ * Response data format
+ * {
+ * "FavoriteMovies": [ObjectID]
+ * }
  */
-// Add a movie to favorites list
 app.post(
   '/users/:Username/movies/:MovieId',
   passport.authenticate('jwt', { session: false }),
@@ -423,18 +475,23 @@ app.post(
   }
 )
 /**
- * Handles a DELETE request to add a movie to the user's favorite list.
- * Requires a JWT Token for authentification.
- * Delets the specified movie to the favorites list of the user.
- * Responds with the updated user object containing the updated favorites list
- * @param {Object} req - The request object.
- * @param {string} req.params.Username - The username of the user.
- * @param {string} req.params.MovieId - The ID of the movie to be deleted to favorites.
- * @param {Object} res - The response object.
- * @returns {Object} A response object containing the updated user object without the deleted movie from favorites or an error message.
+ * @name DELETE '/users/:Username/movies/:MovieId'
+ * @description Handles a DELETE request to add a movie to the user's favorite list.<br>
+ * Requires a JWT Token for authentification.<br>
+ * Deletes the specified movie to the favorites list of the user.<br>
+ * Responds with the updated user object containing the updated favorites list.<br>
+ * @example
+ * Request data format
+ * {
+ * "Username": "",
+ * "FavoriteMovies": ObjectID
+ * }
+ * @example
+ * Response data format
+ * {
+ * "FavoriteMovies": [ObjectID]
+ * }
  */
-
-// Delete a movie from favorites list
 app.delete(
   '/users/:Username/movies/:MovieId',
   passport.authenticate('jwt', { session: false }),
@@ -455,15 +512,23 @@ app.delete(
   }
 )
 /**
- * This GET Request provides a movie description identified by the movie title.
- * Requires a JWT token for authentification.
- * Returns the movie description in JSON format if found, otherwise returns an error message.
- * @param {Object} req - The request object.
- * @param {string} req.params.Title - The title of the movie to be queried.
- * @param {Object} res - The response object.
- * @returns {Object} - A response object containing the movie description or an error message.
+ * @name GET '/movies/:Title'
+ * @description This GET Request provides a movie description identified by the movie title.<br>
+ * Requires a JWT token for authentification.<br>
+ * Returns the movie description in JSON format if found, otherwise returns an error message.<br>
+ * @example
+ * Request data format
+ * {
+ * "Title": ""
+ * }
+ * @example
+ * Response data format
+ * {
+ * "_id":ObjectID,
+ * "Title":"",
+ * "Description":"",
+ * }
  */
-// Get a Movie Description by Name
 app.get(
   '/movies/:Title',
   passport.authenticate('jwt', { session: false }),
@@ -480,16 +545,14 @@ app.get(
 )
 
 /**
- * Starts the server to listen on a specified port and IP address.
- * If the PORT environment variable is set, the server listens on that port.
+ * Starts the server to listen on a specified port and IP address.<br>
+ * If the PORT environment variable is set, the server listens on that port.<br>
  * Otherwise, it defaults to port 8080.
  * @param {number} port - The port number on which the server will listen.
  * @param {string} [ipAddress='0.0.0.0'] - The IP address to bind the server to. Defaults to '0.0.0.0'.
  * @param {Function} callback - A function to be executed once the server starts listening.
  */
-
 const port = process.env.PORT || 8080
-
 app.listen(port, '0.0.0.0', () => {
   console.log('Your app is listening on port ' + port)
 })
@@ -502,8 +565,6 @@ app.listen(port, '0.0.0.0', () => {
  * @param {Object} res - The response object.
  * @param {Function} next - The next middleware function in the request-response cycle.
  */
-
-// Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(500).send('Something broke!')
